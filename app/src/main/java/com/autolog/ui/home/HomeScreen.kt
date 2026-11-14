@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -41,7 +43,7 @@ fun HomeScreen(
     val showSimulator by viewModel.showSimulator.collectAsStateWithLifecycle()
     val isDriving = vehicleState.gear == GearPosition.D || vehicleState.gear == GearPosition.R
 
-    Box(modifier = Modifier.fillMaxSize().background(Background)) {
+    Box(modifier = Modifier.fillMaxSize().background(Background).safeDrawingPadding()) {
         Column(modifier = Modifier.fillMaxSize()) {
             TopBar(
                 isDriving = isDriving,
@@ -144,8 +146,10 @@ private fun VehicleRentalCard(
         shape = RoundedCornerShape(12.dp)
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
-            verticalArrangement = Arrangement.SpaceBetween
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
         ) {
             // Rental status header
             Row(
@@ -162,6 +166,7 @@ private fun VehicleRentalCard(
                     )
                 }
             }
+            Spacer(Modifier.height(12.dp))
 
             // Driver selection (only when not actively driving)
             if (!isDriving) {
@@ -216,6 +221,8 @@ private fun VehicleRentalCard(
                 }
             }
 
+            Spacer(Modifier.height(12.dp))
+
             // Gear row
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
                 Text("기어", fontSize = 12.sp, color = TextSecondary)
@@ -224,6 +231,8 @@ private fun VehicleRentalCard(
                     GearPosition.entries.forEach { g -> GearBadge(g, gear == g) }
                 }
             }
+
+            Spacer(Modifier.height(12.dp))
 
             // Odometer
             Column {
@@ -236,6 +245,8 @@ private fun VehicleRentalCard(
                     )
                 }
             }
+
+            Spacer(Modifier.height(12.dp))
 
             // Fuel bar
             Column {
@@ -261,6 +272,7 @@ private fun VehicleRentalCard(
 
             // 대여 시작 button (when no active trip and not driving)
             if (activeTrip == null && !isDriving) {
+                Spacer(Modifier.height(12.dp))
                 Button(
                     onClick = onRentalStart,
                     modifier = Modifier.fillMaxWidth().height(48.dp),

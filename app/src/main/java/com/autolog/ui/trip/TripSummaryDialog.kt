@@ -4,6 +4,8 @@ import android.content.Context
 import android.speech.tts.TextToSpeech
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -44,7 +46,7 @@ fun TripSummaryOverlay(
     }
 
     Box(
-        modifier = Modifier.fillMaxSize().background(Background.copy(alpha = 0.96f)),
+        modifier = Modifier.fillMaxSize().background(Background.copy(alpha = 0.96f)).safeDrawingPadding(),
         contentAlignment = Alignment.Center
     ) {
         Card(
@@ -53,7 +55,11 @@ fun TripSummaryOverlay(
             shape = RoundedCornerShape(16.dp),
             elevation = CardDefaults.cardElevation(16.dp)
         ) {
-            Column(modifier = Modifier.padding(28.dp)) {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(28.dp)
+            ) {
                 // ── Header ──────────────────────────────────────────────────────
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.LocalParking, contentDescription = null, tint = Success, modifier = Modifier.size(22.dp))

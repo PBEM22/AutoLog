@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Viewport 108×108, safe zone 18→90 (72×72dp).
+    Car: Material directions_car path (24×24), scaled ×3, translated to center.
+      translateX=18, translateY=5, scale=3 →  x:[27..81],  y:[20..68]
+    Log lines: brand #4FC3F7, y=74/81/88, inside safe zone.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Car silhouette (white) -->
+    <group
+        android:translateX="18"
+        android:translateY="5"
+        android:scaleX="3"
+        android:scaleY="3">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M18.92,6.01C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.29,5.42 5.08,6.01L3,12v8c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1h12v1c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-8L18.92,6.01zM6.5,16C5.67,16 5,15.33 5,14.5S5.67,13 6.5,13S8,13.67 8,14.5S7.33,16 6.5,16zM17.5,16C16.67,16 16,15.33 16,14.5S16.67,13 17.5,13S19,13.67 19,14.5S18.33,16 17.5,16zM5,11l1.5,-4.5h11L19,11H5z"/>
+    </group>
+
+    <!-- Log record lines (brand primary blue, decreasing length) -->
+    <path
+        android:strokeColor="#4FC3F7"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M28,74 L80,74"/>
+    <path
+        android:strokeColor="#4FC3F7"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M28,81 L65,81"/>
+    <path
+        android:strokeColor="#80CBC4"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M28,88 L50,88"/>
+
+</vector>
